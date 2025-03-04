@@ -50,7 +50,7 @@ uint8_t CONRAD_Vector_Push(Vector *vector, const uint8_t value) {
     if (vector->capacity == 0)
       new_capacity = 1;
 
-    uint8_t *new_data = realloc(vector->data, new_capacity * sizeof(uint8_t));
+    int16_t *new_data = realloc(vector->data, new_capacity * sizeof(int16_t));
     if (new_data == NULL)
       return MEMORY_ERROR;
 
@@ -84,7 +84,7 @@ uint8_t CONRAD_Vector_Delete_By_Index(Vector *vector, const uint8_t index) {
 
   if (vector->capacity / 2 >= vector->size) {
     const uint8_t new_capacity = vector->capacity / 2;
-    uint8_t *new_data = realloc(vector->data, new_capacity * sizeof(uint8_t));
+    int16_t *new_data = realloc(vector->data, new_capacity * sizeof(int16_t));
 
     vector->data = new_data;
     vector->capacity = new_capacity;
@@ -141,12 +141,12 @@ int16_t CONRAD_Vector_QUERY_By_Content_Ordered(const Vector *vector,
 
 /**
  * @author Yang He
- * @brief 截取原Vector的子数组（从start到end，包含两端）
- * @param vector 源Vector指针，必须非空且已初始化
- * @param start 起始索引，必须小于等于end且不越界
- * @param end 结束索引，必须小于vector->size
- * @return 成功返回包含子数组的新Vector指针；参数错误或内存失败返回NULL
- * @warning 返回的新Vector需调用CONRAD_Vector_Free释放
+ * @brief 截取原 Vector 的子数组（从 start 到 end，包含两端）
+ * @param vector 源 Vector 指针，必须非空且已初始化
+ * @param start 起始索引，必须小于等于 end 且不越界
+ * @param end 结束索引，必须小于 vector->size
+ * @return 成功返回包含子数组的新 Vector 指针；参数错误或内存失败返回 NULL
+ * @warning 返回的新 Vector 需调用 CONRAD_Vector_Free 释放
  */
 Vector *CONRAD_Vector_Cut(Vector *vector, const uint8_t start,
                           const uint8_t end) {
@@ -166,9 +166,9 @@ Vector *CONRAD_Vector_Cut(Vector *vector, const uint8_t start,
 
 /**
  * @author Yang He
- * @brief 释放Vector及其内部数据的内存
- * @param vector 待释放的Vector指针
- * @return 始终返回SUCCESS(0)
+ * @brief 释放 Vector 及其内部数据的内存
+ * @param vector 待释放的 Vector 指针
+ * @return 始终返回 SUCCESS(0)
  * @warning 传入指针后，原指针会失效，不可再次使用
  */
 uint8_t CONRAD_Vector_Free(Vector *vector) {

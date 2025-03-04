@@ -6,7 +6,7 @@
   "configurations": [
 
     {
-      "name": "(Windows) 启动",
+      "name": "Debug",
       "type": "cppvsdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/vector.exe",

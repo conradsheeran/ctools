@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 typedef struct {
-  uint8_t *data;
+  int16_t *data;
   uint8_t size;
   uint8_t capacity;
 } Vector;
