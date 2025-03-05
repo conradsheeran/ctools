@@ -25,8 +25,16 @@ int main(void) {
 
   printf("40: %u\n", Index_40);
 
+  Vector *temp_vector = CONRAD_Vector_Cut(vector, 2, 5);
+
   for (uint8_t i = 0; i < vector->size; i++) {
     printf("%d\n", vector->data[i]);
   }
+
+  for (uint8_t i = 0; i < temp_vector->size; i++) {
+    printf("%d\n", temp_vector->data[i]);
+  }
+
+  CONRAD_Vector_Free(temp_vector);
   CONRAD_Vector_Free(vector);
 }

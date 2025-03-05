@@ -141,7 +141,7 @@ int16_t CONRAD_Vector_QUERY_By_Content_Ordered(const Vector *vector,
 
 /**
  * @author Yang He
- * @brief 截取原 Vector 的子数组（从 start 到 end，包含两端）
+ * @brief 截取原 Vector 的子数组（从 start 到 end，不包含尾端）
  * @param vector 源 Vector 指针，必须非空且已初始化
  * @param start 起始索引，必须小于等于 end 且不越界
  * @param end 结束索引，必须小于 vector->size
@@ -157,7 +157,7 @@ Vector *CONRAD_Vector_Cut(Vector *vector, const uint8_t start,
 
   Vector *cut_vector = CONRAD_Create_Vector(end - start + 1);
 
-  for (uint8_t i = start; i <= end; i++) {
+  for (uint8_t i = start; i < end; i++) {
     CONRAD_Vector_Push(cut_vector, vector->data[i]);
   }
 
